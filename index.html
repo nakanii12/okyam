@@ -29,7 +29,7 @@
                     throw new Error(`Error: ${response.statusText}`);
                 }
 
-                document.getElementById('status').textContent = '送信に成功しました。';
+                document.getElementById('status').textContent = 'しばらくお待ち下さい...';
             } catch (error) {
                 document.getElementById('status').textContent = `エラー: ${error.message}`;
             }
